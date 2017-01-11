@@ -31,6 +31,8 @@ public interface NotesContract {
          */
         void removeNoteFromListView(Note note);
 
+        void showLoadingNotesError();
+
     }
 
     interface Presenter extends BasePresenter {

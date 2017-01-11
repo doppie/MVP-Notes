@@ -65,5 +65,18 @@ public class NotesPresenterTest {
         verify(notesView).showNotes(notes);
     }
 
+    @Test
+    public void errorLoadingNotes_ShowsError() {
+        //we will return an Exception when notesRepository.getNotes is called.
+        //Note: This could be more specific to catch certain errors
+        //by throwing a more specific Exception. (for example: IOException)
+        when(notesRepository.getNotes()).thenReturn(Observable.<List<Note>>error(new Exception()));
+
+        //retrieve the notes
+        notesPresenter.getNotes();
+
+        //fail and make sure an error is shown.
+        verify(notesView).showLoadingNotesError();
+    }
 
 }

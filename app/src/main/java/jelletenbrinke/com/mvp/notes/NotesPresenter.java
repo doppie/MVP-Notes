@@ -46,7 +46,7 @@ public class NotesPresenter implements NotesContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        notesView.showLoadingNotesError();
                     }
 
                     @Override

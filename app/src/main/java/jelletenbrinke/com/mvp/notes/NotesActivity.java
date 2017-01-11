@@ -69,6 +69,11 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
     }
 
     @Override
+    public void showLoadingNotesError() {
+        //TODO: show an error.
+    }
+
+    @Override
     public void onClick(View v, int position, boolean isLongClick) {
 
     }
