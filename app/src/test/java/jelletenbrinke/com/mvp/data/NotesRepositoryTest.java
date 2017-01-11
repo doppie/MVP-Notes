@@ -74,6 +74,18 @@ public class NotesRepositoryTest {
         verify(notesLocalDataSource, times(1)).getNotes();
     }
 
+    @Test
+    public void getTasks_noCachingDataAvailable() {
+        setNotesAvailable(notesLocalDataSource, notes);
+
+        TestSubscriber<List<Note>> testSubscriber = new TestSubscriber<>();
+        notesRepository.getNotes().subscribe(testSubscriber);
+
+        verify(notesLocalDataSource).getNotes();
+    }
+
+    //TODO: Test what happens if there is no data available.
+
     private void setNotesAvailable(NotesDataSource dataSource, List<Note> notes) {
         when(dataSource.getNotes()).thenReturn(Observable.<List<Note>>just(notes) //return the list
                 .concatWith(Observable.<List<Note>>never())); //never allow to complete.
