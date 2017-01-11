@@ -11,6 +11,7 @@ import java.util.List;
 import jelletenbrinke.com.mvp.R;
 import jelletenbrinke.com.mvp.data.Note;
 import jelletenbrinke.com.mvp.data.NotesRepository;
+import jelletenbrinke.com.mvp.data.local.NotesLocalDataSource;
 import jelletenbrinke.com.mvp.utils.ClickListener;
 import jelletenbrinke.com.mvp.utils.schedulers.SchedulerProvider;
 
@@ -29,7 +30,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
         initNotesList();
 
-        presenter = new NotesPresenter(this, NotesRepository.getInstance(), SchedulerProvider.getInstance());
+        presenter = new NotesPresenter(this, NotesRepository.getInstance(NotesLocalDataSource.getInstance()), SchedulerProvider.getInstance());
         presenter.getNotes();
     }
 

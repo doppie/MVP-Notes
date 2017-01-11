@@ -28,17 +28,23 @@ public class NotesRepository implements NotesDataSource {
     /**
      * Prevent direct instantiation
      */
-    private NotesRepository() {
-        notesLocalDataSource = NotesLocalDataSource.getInstance();
+    private NotesRepository(NotesDataSource notesLocalDataSource) {
+        this.notesLocalDataSource = notesLocalDataSource;
     }
 
-    public static NotesRepository getInstance() {
+    public static NotesRepository getInstance(NotesDataSource notesLocalDataSource) {
         if(instance == null) {
-            instance = new NotesRepository();
+            instance = new NotesRepository(notesLocalDataSource);
         }
         return instance;
     }
 
+    /**
+     * Used to reset the repository in unit-tests.
+     */
+    public static void destroyInstance() {
+        instance = null;
+    }
 
     @Override
     public Observable<List<Note>> getNotes() {
