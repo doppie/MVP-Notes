@@ -84,6 +84,15 @@ public class NotesRepositoryTest {
         verify(notesLocalDataSource).getNotes();
     }
 
+
+    @Test
+    public void getTasks_noDataAvailable() {
+        setNotesUnavailable(notesLocalDataSource);
+
+        TestSubscriber<List<Note>> testSubscriber = new TestSubscriber<>();
+        notesRepository.getNotes().subscribe(testSubscriber);
+        testSubscriber.assertValue(new ArrayList<Note>());
+    }
     //TODO: Test what happens if there is no data available.
 
     private void setNotesAvailable(NotesDataSource dataSource, List<Note> notes) {
