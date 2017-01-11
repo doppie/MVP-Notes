@@ -10,7 +10,9 @@ import java.util.List;
 
 import jelletenbrinke.com.mvp.R;
 import jelletenbrinke.com.mvp.data.Note;
+import jelletenbrinke.com.mvp.data.NotesRepository;
 import jelletenbrinke.com.mvp.utils.ClickListener;
+import jelletenbrinke.com.mvp.utils.schedulers.SchedulerProvider;
 
 public class NotesActivity extends AppCompatActivity implements NotesContract.View, ClickListener {
 
@@ -27,7 +29,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
         initNotesList();
 
-        presenter = new NotesPresenter(this);
+        presenter = new NotesPresenter(this, NotesRepository.getInstance(), SchedulerProvider.getInstance());
         presenter.getNotes();
     }
 

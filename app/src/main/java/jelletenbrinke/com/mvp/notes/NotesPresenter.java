@@ -4,6 +4,7 @@ import java.util.List;
 
 import jelletenbrinke.com.mvp.data.Note;
 import jelletenbrinke.com.mvp.data.NotesRepository;
+import jelletenbrinke.com.mvp.utils.schedulers.BaseSchedulerProvider;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -18,13 +19,15 @@ public class NotesPresenter implements NotesContract.Presenter {
 
     private NotesContract.View notesView;
     private NotesRepository notesRepository;
+    private BaseSchedulerProvider schedulerProvider;
 
     private CompositeSubscription subscriptions;
 
 
-    public NotesPresenter(NotesContract.View notesView) {
+    public NotesPresenter(NotesContract.View notesView, NotesRepository notesRepository, BaseSchedulerProvider schedulerProvider) {
         this.notesView = notesView;
-        notesRepository = NotesRepository.getInstance();
+        this.notesRepository = notesRepository;
+        this.schedulerProvider = schedulerProvider;
         subscriptions = new CompositeSubscription();
     }
 
@@ -32,8 +35,8 @@ public class NotesPresenter implements NotesContract.Presenter {
     public void getNotes() {
         Subscription subscription = notesRepository
                 .getNotes()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .subscribe(new Observer<List<Note>>() {
 
                     @Override
