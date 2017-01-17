@@ -1,9 +1,10 @@
-package jelletenbrinke.com.mvp.notes;
+package jelletenbrinke.com.mvp.notes.dagger;
 
 import dagger.Module;
 import dagger.Provides;
 import jelletenbrinke.com.mvp.data.NotesRepository;
 import jelletenbrinke.com.mvp.data.local.NotesLocalDataSource;
+import jelletenbrinke.com.mvp.notes.NotesContract;
 import jelletenbrinke.com.mvp.utils.schedulers.BaseSchedulerProvider;
 import jelletenbrinke.com.mvp.utils.schedulers.SchedulerProvider;
 

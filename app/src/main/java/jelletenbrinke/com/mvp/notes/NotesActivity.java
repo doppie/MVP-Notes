@@ -12,6 +12,8 @@ import javax.inject.Inject;
 
 import jelletenbrinke.com.mvp.R;
 import jelletenbrinke.com.mvp.data.Note;
+import jelletenbrinke.com.mvp.notes.dagger.DaggerNotesComponent;
+import jelletenbrinke.com.mvp.notes.dagger.NotesPresenterModule;
 import jelletenbrinke.com.mvp.utils.ClickListener;
 
 public class NotesActivity extends AppCompatActivity implements NotesContract.View, ClickListener {
