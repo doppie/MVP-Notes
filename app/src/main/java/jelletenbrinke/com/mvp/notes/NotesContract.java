@@ -1,5 +1,7 @@
 package jelletenbrinke.com.mvp.notes;
 
+import android.content.Context;
+
 import java.util.List;
 
 import jelletenbrinke.com.mvp.BasePresenter;

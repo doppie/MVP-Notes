@@ -7,6 +7,8 @@ import android.support.annotation.VisibleForTesting;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import jelletenbrinke.com.mvp.data.local.NotesLocalDataSource;
 import rx.Observable;
 import rx.functions.Func1;
@@ -17,10 +19,7 @@ import rx.functions.Func1;
  */
 public class NotesRepository implements NotesDataSource {
 
-    @Nullable
     private static NotesRepository instance;
-
-    @NonNull
     private NotesDataSource notesLocalDataSource;
 
     //caching our retrieved notes.
@@ -29,7 +28,8 @@ public class NotesRepository implements NotesDataSource {
     /**
      * Prevent direct instantiation
      */
-    private NotesRepository(NotesDataSource notesLocalDataSource) {
+    @Inject
+    NotesRepository(NotesDataSource notesLocalDataSource) {
         this.notesLocalDataSource = notesLocalDataSource;
     }
 

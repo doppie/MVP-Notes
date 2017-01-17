@@ -2,6 +2,8 @@ package jelletenbrinke.com.mvp.notes;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import jelletenbrinke.com.mvp.data.Note;
 import jelletenbrinke.com.mvp.data.NotesRepository;
 import jelletenbrinke.com.mvp.utils.schedulers.BaseSchedulerProvider;
@@ -18,13 +20,14 @@ import rx.subscriptions.CompositeSubscription;
 public class NotesPresenter implements NotesContract.Presenter {
 
     private NotesContract.View notesView;
-    private NotesRepository notesRepository;
-    private BaseSchedulerProvider schedulerProvider;
+
+    NotesRepository notesRepository;
+    BaseSchedulerProvider schedulerProvider;
 
     private CompositeSubscription subscriptions;
 
-
-    public NotesPresenter(NotesContract.View notesView, NotesRepository notesRepository, BaseSchedulerProvider schedulerProvider) {
+    @Inject
+    NotesPresenter(NotesContract.View notesView, NotesRepository notesRepository, BaseSchedulerProvider schedulerProvider) {
         this.notesView = notesView;
         this.notesRepository = notesRepository;
         this.schedulerProvider = schedulerProvider;

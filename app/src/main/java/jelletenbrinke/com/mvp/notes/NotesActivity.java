@@ -8,6 +8,9 @@ import android.view.View;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import jelletenbrinke.com.mvp.BaseApplication;
 import jelletenbrinke.com.mvp.R;
 import jelletenbrinke.com.mvp.data.Note;
 import jelletenbrinke.com.mvp.data.NotesRepository;
@@ -20,7 +23,9 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
     private RecyclerView notesList;
 
-    private NotesContract.Presenter presenter;
+    @Inject
+    NotesPresenter presenter;
+
     private NotesAdapter notesAdapter;
 
     @Override
@@ -30,7 +35,12 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
         initNotesList();
 
-        presenter = new NotesPresenter(this, NotesRepository.getInstance(NotesLocalDataSource.getInstance()), SchedulerProvider.getInstance());
+
+        DaggerNotesComponent.builder()
+                .notesRepositoryComponent(((BaseApplication) getApplication()).getNotesRepositoryComponent())
+                .notesPresenterModule(new NotesPresenterModule(this, SchedulerProvider.getInstance())).build()
+                .inject(this);
+
         presenter.getNotes();
     }
 

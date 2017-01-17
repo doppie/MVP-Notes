@@ -62,4 +62,5 @@ public class NotesLocalDataSource implements NotesDataSource {
         notes.add(new Note(11, "Tip: Coding can be tough, sometimes it helps to draw the flow first and discuss this with your friendly colleagues :)", Calendar.getInstance()));
         notes.add(new Note(12, "Tip: Separating code in small methods (<=5 lines) helps keeping code readable, but also allows testing to be better and easier.", Calendar.getInstance()));
     }
+
 }
