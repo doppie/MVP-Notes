@@ -44,7 +44,7 @@ public class NotesPresenterTest {
         //We want immediate results, we cannot use the android threads in normal java unit tests.
         schedulerProvider = new ImmediateSchedulerProvider();
 
-        notesPresenter = new NotesPresenter(notesView, notesRepository, schedulerProvider);
+//        notesPresenter = new NotesPresenter(notesView, notesRepository, schedulerProvider);
 
         notes = new ArrayList<>();
         notes.add(new Note(1, "Test Note 1", Calendar.getInstance()));

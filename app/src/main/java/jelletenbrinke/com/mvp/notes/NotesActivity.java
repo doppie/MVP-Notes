@@ -10,13 +10,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import jelletenbrinke.com.mvp.BaseApplication;
 import jelletenbrinke.com.mvp.R;
 import jelletenbrinke.com.mvp.data.Note;
-import jelletenbrinke.com.mvp.data.NotesRepository;
-import jelletenbrinke.com.mvp.data.local.NotesLocalDataSource;
 import jelletenbrinke.com.mvp.utils.ClickListener;
-import jelletenbrinke.com.mvp.utils.schedulers.SchedulerProvider;
 
 public class NotesActivity extends AppCompatActivity implements NotesContract.View, ClickListener {
 
@@ -37,8 +33,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
 
 
         DaggerNotesComponent.builder()
-                .notesRepositoryComponent(((BaseApplication) getApplication()).getNotesRepositoryComponent())
-                .notesPresenterModule(new NotesPresenterModule(this, SchedulerProvider.getInstance())).build()
+                .notesPresenterModule(new NotesPresenterModule(this)).build()
                 .inject(this);
 
         presenter.getNotes();

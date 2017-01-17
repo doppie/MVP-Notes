@@ -28,7 +28,6 @@ public class NotesRepository implements NotesDataSource {
     /**
      * Prevent direct instantiation
      */
-    @Inject
     NotesRepository(NotesDataSource notesLocalDataSource) {
         this.notesLocalDataSource = notesLocalDataSource;
     }

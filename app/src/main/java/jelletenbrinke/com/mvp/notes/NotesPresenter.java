@@ -21,16 +21,19 @@ public class NotesPresenter implements NotesContract.Presenter {
 
     private NotesContract.View notesView;
 
+    @Inject
     NotesRepository notesRepository;
+
+    @Inject
     BaseSchedulerProvider schedulerProvider;
 
     private CompositeSubscription subscriptions;
 
     @Inject
-    NotesPresenter(NotesContract.View notesView, NotesRepository notesRepository, BaseSchedulerProvider schedulerProvider) {
+    NotesPresenter(NotesContract.View notesView) {
         this.notesView = notesView;
-        this.notesRepository = notesRepository;
-        this.schedulerProvider = schedulerProvider;
+//        this.notesRepository = notesRepository;
+//        this.schedulerProvider = schedulerProvider;
         subscriptions = new CompositeSubscription();
     }
 
