@@ -32,7 +32,7 @@ internal constructor(private val notesLocalDataSource: NotesDataSource) : NotesD
         }
 
         //otherwise reach out to our local data source.
-        val localNotes = notesLocalDataSource.notes
+        val localNotes = notesLocalDataSource.getNotes()
                 .flatMap { notes -> cacheNotes(notes); Observable.from(notes).toList() }
         return localNotes
     }

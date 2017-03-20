@@ -23,7 +23,7 @@ internal constructor(private val notesView: NotesContract.View, internal var not
 
     override fun getNotes() {
         val subscription = notesRepository
-                .notes
+                .getNotes()
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe(
